@@ -9,13 +9,13 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser, FileUploadParser
 from rest_framework.renderers import JSONRenderer
 
-from serializers import *
+from avm.serializers import *
 from nsg import nsg
 from pizdaint import pizdaint
 from pizdaint.utils.params import check_payload as check_pizdaint_value
-from utils.misc import get_user, get_nsg_enduser, update_job_status_and_quota, hpc_exists, dump_job
+from avm.utils.misc import get_user, get_nsg_enduser, update_job_status_and_quota, hpc_exists, dump_job
 from service_account.settings import DEFAULT_PROJECT as PROJECT, ENABLED_HPC as HPC, BASE_DIR
-from permissions import IsInGroups, IsNotBanned
+from avm.permissions import IsInGroups, IsNotBanned
 
 import logging
 import json
@@ -320,7 +320,7 @@ class JobsView(APIView):
             try:
                 check_pizdaint_value(payload)
             except ValueError:
-		return Response('Core number must be at least equal to 12 and node number at least equal to 1!', status=status.HTTP_400_BAD_REQUEST)
+                return Response('Core number must be at least equal to 12 and node number at least equal to 1!', status=status.HTTP_400_BAD_REQUEST)
             
             job_description = {
                 "Executable": payload['command'],

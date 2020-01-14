@@ -1,5 +1,5 @@
-from utils.params import *
-from utils import api
+from pizdaint.utils.params import *
+from pizdaint.utils import api
 from datetime import timedelta
 from bs4 import BeautifulSoup
 
@@ -151,7 +151,7 @@ def get_job_files_list(job_id, headers={}):
     data = []
     job_id = job_id.lower()
     r = api.get_job_file_list(job_id=job_id.lower(), headers=headers)
-    print r.status_code, r.content
+    print(r.status_code, r.content)
     if r.status_code == 200:
         soup = BeautifulSoup(r.content)
         file_list = soup.findAll("ul")[0].findAll("li")

@@ -95,7 +95,7 @@ def get_user(request):
             add_default_quota_for_user(user)
         else:
             logger.debug('get_user(): Errors in user creation.\nget_user(): ========= ERROR: =========\nget_user():')  
-            print serializer.errors
+            print(serializer.errors)
             return serializer.errors
 
     return user
@@ -181,7 +181,7 @@ def dump_job(user_id, hpc_name, job_id, job_description, job_file_name, job_file
     with open('job_description.txt', 'w') as fd:
         fd.write(job_description)
 
-    print '====== JOB DUMP ======'
-    print 'UserId: ' + str(user_id) + ' JobId: ' + str(job_id)
+    print('====== JOB DUMP ======')
+    print('UserId: ' + str(user_id) + ' JobId: ' + str(job_id))
     return
     
